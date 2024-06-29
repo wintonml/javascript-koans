@@ -91,7 +91,8 @@ describe("About Applying What We Have Learnt", function() {
     ingredientCount["mushrooms"] = _(products).chain()
                        .map(x => x.ingredients) // [["artichoke", "sundried tomatoes", "mushrooms"], ["roma", "sundried tomatoes", "goats cheese", "rosemary"]]
                        .flatten() // ["artichoke", "sundried tomatoes", "mushrooms", "roma", "sundried tomatoes", "goats cheese", "rosemary"]
-                       .reduce((total, ingredient) => ingredient === "mushrooms" ? total + 1 : total, 0);
+                       .reduce((total, ingredient) => ingredient === "mushrooms" ? total + 1 : total, 0)
+                       .value();
 
     expect(ingredientCount['mushrooms']).toBe(2);
   });
