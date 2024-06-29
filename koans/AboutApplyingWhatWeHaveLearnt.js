@@ -147,16 +147,16 @@ describe("About Applying What We Have Learnt", function() {
     var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
     expect(largestPrimeFactor).toBe(3)
 
-    var compositeNumber = 10;
-    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    compositeNumber = 10;
+    largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
     expect(largestPrimeFactor).toBe(5)
 
-    var compositeNumber = 51;
-    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    compositeNumber = 51;
+    largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
     expect(largestPrimeFactor).toBe(17)
 
-    var compositeNumber = 7;
-    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    compositeNumber = 7;
+    largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
     expect(largestPrimeFactor).toBe("Enter a composite number")
   });
 
@@ -215,9 +215,50 @@ describe("About Applying What We Have Learnt", function() {
     expect(potentialSmallestDivisibleNumberOfNumbersOneToTwenty).toBe(232792560);
   });
 
-  // it("should find the difference between the sum of the squares and the square of the sums", function () {
-  //   expect(true).toBe(false);
-  // });
+  it("should find the difference between the sum of the squares and the square of the sums", function () {
+    /**
+     * @param {number} num
+    */
+    function calculateSumOfSquares(num){
+      var rangeOfNumbers = _.range(1, num + 1); // the end range is exclusive so need to increment it by 1
+      return rangeOfNumbers.reduce(
+        (total, current) => total + Math.pow(current, 2), 0);
+    }
+
+    /**
+     * @param {number} num
+    */
+    function calculateSquareOfSums(num){
+      var rangeOfNumbers = _.range(1, num + 1);
+      return Math.pow(rangeOfNumbers.reduce(
+        (total, current) => total + current, 0), 2);
+    }
+
+    /**
+     * @param {number} num
+    */
+    function findDifferenceBetweenSumOfSquaresAndSquareOfSums(num){
+        return Math.abs(calculateSquareOfSums(num) - calculateSumOfSquares(num))
+    }
+
+    var n = 2;
+    var difference = findDifferenceBetweenSumOfSquaresAndSquareOfSums(n);
+    expect(calculateSquareOfSums(n)).toBe(9);
+    expect(calculateSumOfSquares(n)).toBe(5);
+    expect(difference).toBe(4);
+
+    n = 3;
+    difference = findDifferenceBetweenSumOfSquaresAndSquareOfSums(n);
+    expect(calculateSquareOfSums(n)).toBe(36);
+    expect(calculateSumOfSquares(n)).toBe(14);
+    expect(difference).toBe(22);
+
+    n = 5;
+    difference = findDifferenceBetweenSumOfSquaresAndSquareOfSums(n);
+    expect(calculateSquareOfSums(n)).toBe(Math.pow(15,2));
+    expect(calculateSumOfSquares(n)).toBe(1 + 4 + 9 + 16 + 25);
+    expect(difference).toBe(170);
+  });
 
   it("should find the 10001st prime", function () {
     var count = 0;
