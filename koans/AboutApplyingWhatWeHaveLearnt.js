@@ -120,6 +120,8 @@ describe("About Applying What We Have Learnt", function() {
      * @param {number} num
     */
     function isPrimeNumber(num){
+      if(num <= 3 && num > 0) return true;
+
       for(i = 2; i <= (num / 2); i++){
         if(num % i === 0){
           return false;
@@ -158,7 +160,33 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    expect(true).toBe(false);
+    /**
+     * @param {number} num
+    */
+    function isPalindrome(num){
+      var numAsString = num.toString();
+
+      return numAsString === numAsString.split("").reverse().join("");
+    }
+
+    var max = 0;
+    var num1 = 0;
+    var num2 = 0;
+
+    for(i = 999; i > 99; i--){
+      for(j = i; j > 99; j--){
+        var product = i * j;
+        if(isPalindrome(product) && product > max){
+          max = product;
+          num1 = i;
+          num2 = j;
+        }
+      }
+    }
+
+    expect(max).toBe(906609);
+    expect(num1).toBe(993);
+    expect(num2).toBe(913);
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
