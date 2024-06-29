@@ -98,27 +98,79 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   /*********************************************************************************/
-  /* UNCOMMENT FOR EXTRA CREDIT */
-  /*
-  it("should find the largest prime factor of a composite number", function () {
 
+  it("should find the largest prime factor of a composite number", function () {
+    /**
+     * This will ignore the factors of 1 and the number passed in.
+     * @param {number} num
+    */
+    function getFactors(num){
+      var factors = [];
+
+      for(i = 2; i <= (num / 2); i++){
+        if(num % i === 0){
+          factors.push(i)
+        };
+      }
+
+      return factors;
+    }
+
+    /**
+     * @param {number} num
+    */
+    function isPrimeNumber(num){
+      for(i = 2; i <= (num / 2); i++){
+        if(num % i === 0){
+          return false;
+        };
+      }
+
+      return true;
+    }
+
+    /**
+     * @param {number} num
+    */
+    function getLargestPrimeFactor(num){
+      if(isPrimeNumber(num)){ return "Enter a composite number" }
+      var allFactors = getFactors(compositeNumber);
+      var primeFactors = allFactors.filter(x => getFactors(x).length === 0)
+
+      return primeFactors.pop();
+    }
+
+    var compositeNumber = 6;
+    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    expect(largestPrimeFactor).toBe(3)
+
+    var compositeNumber = 10;
+    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    expect(largestPrimeFactor).toBe(5)
+
+    var compositeNumber = 51;
+    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    expect(largestPrimeFactor).toBe(17)
+
+    var compositeNumber = 7;
+    var largestPrimeFactor = getLargestPrimeFactor(compositeNumber);
+    expect(largestPrimeFactor).toBe("Enter a composite number")
   });
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-
+    expect(true).toBe(false);
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
-
-
+    expect(true).toBe(false);
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
-
+    expect(true).toBe(false);
   });
 
   it("should find the 10001st prime", function () {
-
+    expect(true).toBe(false);
   });
-  */
+
 });
