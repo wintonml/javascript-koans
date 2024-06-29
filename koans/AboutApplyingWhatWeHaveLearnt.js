@@ -190,7 +190,31 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
-    expect(true).toBe(false);
+
+    /**
+     * @param {number} num
+    */
+    function isDivisibleByAllNumbersFromTwoToTwenty(num){
+      for(i = 20; i > 1; i--){ // don't need to include 1
+        if(num % i !== 0 ){
+          return false
+        }
+      }
+      return true;
+    }
+
+    var foundSmallestDivisibleNumberOfNumbersOneToTwenty = false;
+    var potentialSmallestDivisibleNumberOfNumbersOneToTwenty = 380; // 20 * 19 cannot be smaller than the product of the two largest numbers
+
+    while(!foundSmallestDivisibleNumberOfNumbersOneToTwenty){
+      if(isDivisibleByAllNumbersFromTwoToTwenty(potentialSmallestDivisibleNumberOfNumbersOneToTwenty)){
+        isDivisibleByAllNumbersFromTwoToTwenty = true;
+        break;
+      }
+      potentialSmallestDivisibleNumberOfNumbersOneToTwenty += 10;
+    }
+
+    expect(potentialSmallestDivisibleNumberOfNumbersOneToTwenty).toBe(232792560);
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
